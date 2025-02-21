@@ -34,7 +34,7 @@ function Login() {
     <div className={styles.loginContainer}> {/* Updated class name */}
       <div className={styles.header}>
               <div className={styles.logo}>Travdoodle</div>
-              <Link to="/login">
+              <Link to="/sign-up">
                 <button className={styles.loginButton}>Sign Up</button>
               </Link>
             </div>
