@@ -10,9 +10,10 @@ function Login() {
   const { login } = useAuthStore();
 
   const initialValues = {
-    email: '',
+    email: '',  // Change from email to identifier
     password: '',
-  };
+    };
+
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required'),
@@ -44,7 +45,7 @@ function Login() {
           <Form className={styles.loginForm}> {/* Updated class name */}
             <div className={styles.formField}>
               <label htmlFor="email">Email</label>
-              <Field type="identifier" name="email" className={styles.formInput} /> {/* Updated class name */}
+              <Field type="email" name="email" className={styles.formInput} />{/* Updated class name */}
               <ErrorMessage name="email" component="div" className={styles.errorMessage} />
             </div>
             <div className={styles.formField}>

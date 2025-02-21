@@ -22,18 +22,22 @@ const useAuthStore = create((set) => ({
 
   login: async (credentials, navigate) => {
     try {
-      const response = await fetch('https://travdoodle-api.onrender.com/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(credentials),
-      });
+        const response = await fetch('https://travdoodle-api.onrender.com/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                identifier: credentials.email,  // Change email to identifier
+                password: credentials.password,
+            }),
+        });
+        
 
       if (response.ok) {
         const user = await response.json();
         set({ isLoggedIn: true, userId: user.id, username: user.username, userEmail: user.email });
-        navigate('/'); // Redirect to home after login
+        navigate('/dashboard'); // Redirect to dashboard after login
       } else {
         const data = await response.json();
         if (response.status === 404) {
