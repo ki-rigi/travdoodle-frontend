@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styles from "./LandingStyles.module.css";
 
 function Landing() {
+
+  useEffect(() => {
+    // Preload the images
+    const preloadImages = ["/landing.jpg"];
+    preloadImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   return (
     <div className={styles.landing}>
       {/* Header with Logo and Login Button */}
       <div className={styles.header}>
         <div className={styles.logo}>Travdoodle</div>
-        <button className={styles.loginButton}>Login</button>
+        <Link to="/login">
+          <button className={styles.loginButton}>Login</button>
+        </Link>
       </div>
 
       <div className={styles.overlay}>
@@ -18,9 +31,9 @@ function Landing() {
         </div>
       </div>
       <footer className={styles.footer}>
-      <p>Made with ❤️ by Travdoodle</p>
-      <p>© {new Date().getFullYear()} Travdoodle. All rights reserved.</p>
-    </footer>
+        <p>Made with ❤️ by Travdoodle</p>
+        <p>© {new Date().getFullYear()} Travdoodle. All rights reserved.</p>
+      </footer>
     </div>
   );
 }
