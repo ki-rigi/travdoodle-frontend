@@ -1,0 +1,112 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--base--white);
+    margin-top: 70px;
+  }
+  
+  .dashboardTitle {
+    font-family: var(--font--primary);
+    font-size: 32px;
+    color: var(--base--black);
+    margin-bottom: 20px;
+  }
+  
+  .cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 900px; /* Reduced width */
+    padding: 20px;
+  }
+  
+  .card {
+    width: 240px;
+    height: 180px; /* Increased height to fit button */
+    background-color: var(--base--white);
+    border: 2px solid var(--base--black);
+    border-radius: 12px;
+    box-shadow: 4px 4px 0px var(--base--black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    padding: 10px;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 6px 6px 0px var(--base--black);
+  }
+  
+  .card h3 {
+    font-family: var(--font--primary);
+    font-size: 20px;
+    color: var(--base--primary);
+    margin: 0;
+  }
+  
+  .card p {
+    font-family: var(--font--secondary);
+    font-size: 14px;
+    color: var(--text--black);
+    margin: 5px 0;
+  }
+  
+  .editButton {
+    background-color: var(--base--primary);
+    color: var(--text--white);
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-family: var(--font--secondary);
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background-color 0.2s, transform 0.2s;
+  }
+  
+  .editButton:hover {
+    background-color: #8c0c07;
+    transform: scale(1.05);
+  }
+  
+  /* Create New Itinerary Card */
+  .card:first-child {
+    background-color: var(--base--primary);
+    color: var(--text--white);
+    border: none;
+    box-shadow: 4px 4px 0px var(--base--black);
+  }
+  
+  .card:first-child h3 {
+    color: var(--text--white);
+  }
+  
+  .card:first-child:hover {
+    transform: scale(1.05);
+    box-shadow: 6px 6px 0px var(--base--black);
+  }
+
+  .itineraryTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font--primary);
+    font-size: 20px;
+    color: var(--base--primary);
+    margin: 0;
+  }
+  
+  .icon {
+    color: var(--base--primary);
+    font-size: 22px;
+  }
+  
+  

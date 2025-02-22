@@ -130,4 +130,19 @@
   text-decoration: underline;
 }
 
+.footer {
+  color: var(--text--black);
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer p {
+  margin: 2px 0;
+  font-size: 12px;
+}
+
 

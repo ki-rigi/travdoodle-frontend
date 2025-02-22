@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuthStore from '../AuthStore/AuthStore';
 import styles from "./LoginStyles.module.css";
-import Footer from '../Footer/Footer';
+
 
 function Login() {
   const navigate = useNavigate();
@@ -63,7 +63,10 @@ function Login() {
       <div className={styles.signupLink}>
         Don't have an account? <Link to="/sign-up">Sign up</Link>
       </div>
-      <Footer/>
+      <footer className={styles.footer}>
+              <p>Made with ❤️ by Travdoodle</p>
+              <p>© {new Date().getFullYear()} Travdoodle. All rights reserved.</p>
+      </footer>
     </div>
   );
 }
