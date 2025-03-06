@@ -1,0 +1,194 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--base--white);
+    margin-top: 70px;
+    width: 100%;
+  }
+  
+  .itineraryTitle {
+    font-family: var(--font--primary);
+    font-size: 32px;
+    color: var(--base--black);
+    margin-bottom: 10px;
+  }
+  
+  .itineraryDetails {
+    font-family: var(--font--secondary);
+    font-size: 18px;
+    color: var(--text--black);
+    margin-bottom: 20px;
+  }
+  
+  /* Layout for Packing List & Destinations */
+  .contentContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    gap: 20px;
+  }
+  
+ /* Packing List */
+.packingListContainer {
+    width: 250px;
+    min-height: 50vh; /* Ensures it takes at least half the page height */
+    background-color: var(--base--white);
+    border: 2px solid var(--base--black);
+    border-radius: 12px;
+    box-shadow: 4px 4px 0px var(--base--black);
+    padding: 15px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .packingListContainer ul {
+    overflow-y: auto; /* Prevents overflow */
+  }
+  
+  .packingListContainer h2 {
+    font-family: var(--font--primary);
+    font-size: 20px;
+    color: var(--base--primary);
+    margin-bottom: 10px;
+  }
+  
+  .packingListContainer li {
+    font-family: var(--font--secondary);
+    font-size: 16px;
+    color: var(--text--black);
+    margin: 5px 0;
+  }
+  
+  /* Destinations */
+.destinationsContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .destinationsContainer h2 {
+    width: 100%;
+    font-family: var(--font--primary);
+    font-size: 22px;
+    color: var(--base--black);
+    margin-bottom: 10px;
+  }
+  
+  .cardsContainer {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+  }
+  
+  .card {
+    width: 240px;
+    height: 180px;
+    background-color: var(--base--white);
+    border: 2px solid var(--base--black);
+    border-radius: 12px;
+    box-shadow: 4px 4px 0px var(--base--black);
+    display: inline-flex; /* Ensures they stay in a row */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    padding: 10px;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 6px 6px 0px var(--base--black);
+  }
+  
+  .card h3 {
+    font-family: var(--font--primary);
+    font-size: 20px;
+    color: var(--base--primary);
+    margin: 0;
+  }
+  
+  .card p {
+    font-family: var(--font--secondary);
+    font-size: 14px;
+    color: var(--text--black);
+    margin: 5px 0;
+  }
+  
+  /* Create New Destination Card */
+  .card:first-child {
+    background-color: var(--base--primary);
+    color: var(--text--white);
+    border: none;
+    box-shadow: 4px 4px 0px var(--base--black);
+  }
+  
+  .card:first-child h3 {
+    color: var(--text--white);
+  }
+  
+  .card:first-child:hover {
+    transform: scale(1.05);
+    box-shadow: 6px 6px 0px var(--base--black);
+  }
+  
+  /* Destination Title */
+  .destinationTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font--primary);
+    font-size: 20px;
+    color: var(--base--primary);
+    margin: 0;
+  }
+  
+  .icon {
+    color: var(--base--primary);
+    font-size: 22px;
+  }
+  
+  .backButton {
+    position: absolute;
+    top: 110px; /* Adjust this based on spacing */
+    left: 40px;
+    background-color: var(--base--primary);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .backButton:hover {
+    transform: scale(1.05);
+  }
+
+  .editButton {
+    background-color: var(--base--primary);
+    color: var(--text--white);
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-family: var(--font--secondary);
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 18px;
+    transition: background-color 0.2s, transform 0.2s;
+  }
+  
+  .editButton:hover {
+    background-color: #8c0c07;
+    transform: scale(1.05);
+  }
+  
