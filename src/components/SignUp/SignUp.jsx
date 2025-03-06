@@ -45,7 +45,7 @@ function SignUp() {
         alert('Signed up successfully');
         
         // Automatically log in the user
-        await login({ identifier: values.email, password: values.password }, navigate);
+        await login({ email: values.email, password: values.password }, navigate);
 
       } else {
         const data = await response.json();

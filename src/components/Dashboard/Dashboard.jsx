@@ -16,13 +16,19 @@ function Dashboard() {
 
   useEffect(() => {
     if (!userId) return; // Prevent fetching if user is not logged in
-
-    fetch(`https://travdoodle-api.onrender.com/itineraries?user_id=${userId}`)
+  
+    fetch(`https://travdoodle-api.onrender.com/users/${userId}`) // Fetch user details
       .then(response => response.json())
-      .then(data => setItineraries(data))
-      .catch(error => console.error("Error fetching itineraries:", error));
-  }, [userId]); // Fetch when userId changes
-
+      .then(userData => {
+        if (userData.itineraries) {
+          setItineraries(userData.itineraries); // Extract and set itineraries
+        } else {
+          setItineraries([]); // Handle case where there are no itineraries
+        }
+      })
+      .catch(error => console.error("Error fetching user details:", error));
+  }, [userId]); // Re-run when userId changes
+  
   const handleCreateItinerary = () => {
     setIsModalOpen(true);
   };
