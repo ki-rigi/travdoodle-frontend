@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { FaUmbrellaBeach } from "react-icons/fa";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import styles from "./ItineraryStyles.module.css";
 import Modal from "../Modal/Modal";
-import { useNavigate } from "react-router-dom";
 
 function Itinerary() {
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const { itineraryId } = useParams();
   const [itinerary, setItinerary] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [destinationName, setDestinationName] = useState("");
-  const [refreshTrigger, setRefreshTrigger] = useState(false); // 🔄 State to trigger refresh
+  const [refreshTrigger, setRefreshTrigger] = useState(false);
 
   const fetchItinerary = () => {
     setLoading(true);
@@ -32,7 +31,7 @@ const navigate = useNavigate();
 
   useEffect(() => {
     fetchItinerary();
-  }, [itineraryId, refreshTrigger]); // 🔄 Re-fetch when `refreshTrigger` changes
+  }, [itineraryId, refreshTrigger]);
 
   if (loading) return <p>Loading...</p>;
   if (!itinerary) return <p>Itinerary not found</p>;
@@ -61,10 +60,27 @@ const navigate = useNavigate();
       if (!response.ok) throw new Error("Failed to add destination");
 
       await response.json();
-      setRefreshTrigger((prev) => !prev); // 🔄 Trigger re-fetch
+      setRefreshTrigger((prev) => !prev);
       handleCloseModal();
     } catch (error) {
       console.error("Error adding destination:", error);
+    }
+  };
+
+  const handleDeleteTrip = async () => {
+    if (!window.confirm("Are you sure you want to delete this trip?")) return;
+
+    try {
+      const response = await fetch(`https://travdoodle-api.onrender.com/itineraries/${itineraryId}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) throw new Error("Failed to delete itinerary");
+
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Error deleting itinerary:", error);
+      alert("Failed to delete the trip. Please try again.");
     }
   };
 
@@ -76,17 +92,12 @@ const navigate = useNavigate();
     <div className={styles.container}>
       <Header />
       <div className={styles.itineraryDetails}>
-        {/* Back Button */}
         <button className={styles.backButton} onClick={() => navigate(-1)}>← Back</button>
-        
-        <h1 className={styles.itineraryTitle}>{itinerary.name}</h1>
-        <p>
-          {itinerary.start_date} - {itinerary.end_date}
-        </p>
+        <h1 className={styles.itineraryTitle}>{itinerary.name} Trip</h1>
+        <p>Start date - {itinerary.start_date}</p>
+        <p>End date - {itinerary.end_date}</p>
       </div>
-      
       <div className={styles.contentContainer}>
-        {/* Packing List */}
         <div className={styles.packingListContainer}>
           <h2>Packing List</h2>
           <ul>
@@ -97,8 +108,6 @@ const navigate = useNavigate();
             ))}
           </ul>
         </div>
-        
-        {/* Destinations */}
         <div className={styles.destinationsContainer}>
           <h2>Destinations</h2>
           <div className={styles.cardsContainer}>
@@ -111,18 +120,18 @@ const navigate = useNavigate();
                   <FaUmbrellaBeach className={styles.icon} /> {destination.name}
                 </h3>
                 <button
-                    className={styles.editButton}
-                    onClick={() => navigate(`/destination/${destination.id}`)} // Navigate to the itinerary page
-                    >
-                    View/Edit Destination
-                    </button>
+                  className={styles.editButton}
+                  onClick={() => navigate(`/destination/${destination.id}`)}
+                >
+                  View/Edit Destination
+                </button>
               </div>
             ))}
           </div>
         </div>
       </div>
-      
       <Modal title="Add New Destination" fields={fields} isOpen={isModalOpen} onClose={handleCloseModal} onSubmit={handleSubmit} />
+      <button className={styles.deleteButton} onClick={handleDeleteTrip}>Delete Trip</button>
       <Footer />
     </div>
   );

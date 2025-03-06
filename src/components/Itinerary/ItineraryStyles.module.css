@@ -10,9 +10,9 @@
   
   .itineraryTitle {
     font-family: var(--font--primary);
-    font-size: 32px;
-    color: var(--base--black);
-    margin-bottom: 10px;
+    font-size: 35px;
+    color: var(--text--black);
+    margin-bottom: 30px;
   }
   
   .itineraryDetails {
@@ -20,6 +20,13 @@
     font-size: 18px;
     color: var(--text--black);
     margin-bottom: 20px;
+  }
+
+  .itineraryDetails p {
+    font-family: var(--font--secondary);
+    font-size: 16px;
+    color: var(--text--black);
+    margin: 5px 0;
   }
   
   /* Layout for Packing List & Destinations */
@@ -51,7 +58,7 @@
   
   .packingListContainer h2 {
     font-family: var(--font--primary);
-    font-size: 20px;
+    font-size: 27px;
     color: var(--base--primary);
     margin-bottom: 10px;
   }
@@ -75,7 +82,7 @@
   .destinationsContainer h2 {
     width: 100%;
     font-family: var(--font--primary);
-    font-size: 22px;
+    font-size: 27px;
     color: var(--base--black);
     margin-bottom: 10px;
   }
@@ -111,7 +118,7 @@
   
   .card h3 {
     font-family: var(--font--primary);
-    font-size: 20px;
+    font-size: 23px;
     color: var(--base--primary);
     margin: 0;
   }
@@ -191,4 +198,76 @@
     background-color: #8c0c07;
     transform: scale(1.05);
   }
+
+  .deleteButton {
+    position: absolute;
+    top: 110px;
+    right: 40px;
+    background-color: var(--base--primary);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .deleteButton:hover {
+    transform: scale(1.05);
+  }
+
+  @media screen and (max-width: 768px) {
+    .contentContainer {
+      flex-direction: column; /* Stack elements vertically */
+      align-items: center;
+      gap: 15px;
+    }
+  
+    .packingListContainer {
+      width: 100%;
+      min-height: auto;
+    }
+  
+    .destinationsContainer {
+      padding: 10px;
+      width: 100%;
+    }
+  
+    .cardsContainer {
+      justify-content: center;
+    }
+  
+    .card {
+      width: 90%;
+      max-width: 300px;
+      height: auto;
+    }
+  
+    .backButton {
+      position: relative;
+      top: auto;
+      left: auto;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+  
+    .itineraryTitle {
+      text-align: center;
+    }
+  
+    .itineraryDetails {
+      font-size: 16px;
+      text-align: center;
+    }
+    .deleteButton {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin-top: 20px;
+        width: 100%;
+        text-align: center;
+      }
+  }
+  
   

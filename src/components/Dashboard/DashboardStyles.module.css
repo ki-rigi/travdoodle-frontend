@@ -9,8 +9,8 @@
   
   .dashboardTitle {
     font-family: var(--font--primary);
-    font-size: 32px;
-    color: var(--base--black);
+    font-size: 39px;
+    color: var(--text--black);
     margin-bottom: 20px;
   }
   
@@ -47,7 +47,7 @@
   
   .card h3 {
     font-family: var(--font--primary);
-    font-size: 20px;
+    font-size: 23px;
     color: var(--base--primary);
     margin: 0;
   }

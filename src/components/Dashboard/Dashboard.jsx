@@ -82,7 +82,7 @@ function Dashboard() {
         {itineraries.map((itinerary) => (
           <div key={itinerary.id} className={styles.card}>
             <h3 className={styles.itineraryTitle}>
-              <FaUmbrellaBeach className={styles.icon} /> {itinerary.name}
+              <FaUmbrellaBeach className={styles.icon} /> {itinerary.name} Trip
             </h3>
             <p>
               {itinerary.start_date} - {itinerary.end_date}

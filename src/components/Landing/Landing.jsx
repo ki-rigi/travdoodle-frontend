@@ -26,7 +26,7 @@ function Landing() {
       <div className={styles.overlay}>
         <div className={styles.content}>
           <h1>Explore the World with Travdoodle</h1>
-          <p>Easily plan your trips, organize itineraries, track destinations, and manage your packing list—all in one place.</p>
+          <p>Easily plan your trips, organize itineraries, track destinations, and manage your packing list — all in one place.</p>
           <Link to="/sign-up">
           <button className={styles.button}>Get Started</button>
         </Link>
