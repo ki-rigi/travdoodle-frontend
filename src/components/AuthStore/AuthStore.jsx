@@ -5,6 +5,10 @@ const useAuthStore = create((set) => ({
   userId: null,
   username: '',
   userEmail: '',
+
+  setUserInfo: (newUsername, newEmail) => {
+    set({ username: newUsername, userEmail: newEmail });
+  },
   
   checkSession: async () => {
     try {
