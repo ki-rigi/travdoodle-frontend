@@ -40,7 +40,7 @@
   
  /* Packing List */
 .packingListContainer {
-    width: 250px;
+    width: 290px;
     min-height: 50vh; /* Ensures it takes at least half the page height */
     background-color: var(--base--white);
     border: 2px solid var(--base--black);
@@ -216,6 +216,46 @@
   .deleteButton:hover {
     transform: scale(1.05);
   }
+
+  .editButton {
+    background-color: var(--base--primary);
+    color: var(--text--white);
+    border: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: background-color 0.2s, transform 0.2s;
+  }
+  
+  .editButton:hover {
+    background-color: #8c0c07;
+    transform: scale(1.05);
+  }
+  
+  .editButton svg {
+    font-size: 16px; /* Adjust icon size */
+  }
+
+  .addButton {
+    background-color: var(--base--primary);
+    color: var(--text--white);
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-family: var(--font--primary);
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.addButton:hover {
+    background-color: #8c0c07;
+    transform: scale(1.05);
+}
+
+  
 
   @media screen and (max-width: 768px) {
     .contentContainer {

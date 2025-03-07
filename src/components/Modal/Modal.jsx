@@ -13,13 +13,23 @@ const Modal = ({ title, fields, isOpen, onClose, onSubmit }) => {
             <label className={styles.label} htmlFor={field.name}>
               {field.label}:
             </label>
-            <input
-              id={field.name}
-              type={field.type}
-              value={field.value}
-              onChange={field.onChange}
-              className={styles.input}
-            />
+            {field.type === "checkbox" ? (
+              <input
+                id={field.name}
+                type="checkbox"
+                checked={field.checked || false} // Ensure checked is always boolean
+                onChange={field.onChange}
+                className={styles.checkbox}
+              />
+            ) : (
+              <input
+                id={field.name}
+                type={field.type}
+                value={field.value}
+                onChange={field.onChange}
+                className={styles.input}
+              />
+            )}
           </div>
         ))}
         <button className={styles.saveButton} onClick={onSubmit}>
@@ -32,5 +42,6 @@ const Modal = ({ title, fields, isOpen, onClose, onSubmit }) => {
     </div>
   );
 };
+
 
 export default Modal;
