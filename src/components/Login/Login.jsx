@@ -40,6 +40,9 @@ function Login() {
                 <button className={styles.loginButton}>Sign Up</button>
               </Link>
             </div>
+      <button className={styles.backButton} onClick={() => navigate(-1)}>
+                ← Back
+              </button>
       <h2 className={styles.loginTitle}>Login</h2> {/* Updated class name */}
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
         {({ isSubmitting }) => (

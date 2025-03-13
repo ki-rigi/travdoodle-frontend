@@ -24,7 +24,7 @@
   /* Travdoodle Logo */
   .logo {
     font-size: 28px;
-    font-family: var(--font--primary);
+    font-family:  "Pacifico", cursive;;
     color: var(--text--primary);
   }
   
@@ -145,4 +145,78 @@
   font-size: 12px;
 }
 
+.backButton {
+  position: absolute;
+  top: 110px; /* Adjust this based on spacing */
+  left: 40px;
+  background-color: var(--base--primary);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.backButton:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0 20px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .loginButton {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  .loginContainer {
+    padding: 60px 20px;
+  }
+
+  .loginTitle {
+    font-size: 1.8rem;
+  }
+
+  .loginForm {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+
+  .formInput {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .formButton {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .backButton {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: fit-content;
+    font-size: 14px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+  }
+
+  .footer {
+    font-size: 12px;
+    padding: 10px;
+  }
+}
 
