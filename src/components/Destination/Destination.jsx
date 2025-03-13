@@ -20,6 +20,10 @@ function Destination() {
   const [checkOutDate, setCheckOutDate] = useState("");
   const [price, setPrice] = useState("");
   const [refreshTrigger, setRefreshTrigger] = useState(false);
+  const [isEditActivityModalOpen, setIsEditActivityModalOpen] = useState(false);
+  const [isEditAccommodationModalOpen, setIsEditAccommodationModalOpen] = useState(false);
+  const [selectedActivity, setSelectedActivity] = useState(null);
+  const [selectedAccommodation, setSelectedAccommodation] = useState(null);
 
   useEffect(() => {
     fetch(`https://travdoodle-api.onrender.com/destinations/${destinationId}`)
@@ -37,8 +41,21 @@ function Destination() {
   if (loading) return <p>Loading...</p>;
   if (!destination) return <p>Destination not found</p>;
 
-  const handleCreateActivity = () => setIsActivityModalOpen(true);
-  const handleCreateAccommodation = () => setIsAccommodationModalOpen(true);
+  const handleCreateActivity = () => {
+    setActivityName("");  // Reset activity name
+    setActivityDescription(""); // Reset activity description
+    setIsActivityModalOpen(true);
+  };
+  
+  const handleCreateAccommodation = () => {
+    setAccommodationName("");
+    setAccommodationAddress("");
+    setCheckInDate("");
+    setCheckOutDate("");
+    setPrice("");
+    setIsAccommodationModalOpen(true);
+  };
+  
   const handleCloseActivityModal = () => {
     setIsActivityModalOpen(false);
     setActivityName("");
@@ -104,6 +121,76 @@ function Destination() {
     }
   };
 
+  const handleEditActivity = (activity) => {
+    setSelectedActivity(activity);
+    setActivityName(activity.name);
+    setActivityDescription(activity.description);
+    setIsEditActivityModalOpen(true);
+  };
+
+  const handleEditAccommodation = (accommodation) => {
+    setSelectedAccommodation(accommodation);
+    setAccommodationName(accommodation.name);
+    setAccommodationAddress(accommodation.address);
+    setCheckInDate(accommodation.check_in_date);
+    setCheckOutDate(accommodation.check_out_date);
+    setPrice(accommodation.price);
+    setIsEditAccommodationModalOpen(true);
+  };
+
+  const handleUpdateActivity = async () => {
+    if (!selectedActivity) return;
+
+    const updatedActivity = {
+        name: activityName,
+        description: activityDescription,
+        destination_id: selectedActivity.destination_id, // Ensure this is a number, not an object
+      };
+
+    try {
+      const response = await fetch(`https://travdoodle-api.onrender.com/activities/${selectedActivity.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedActivity),
+      });
+      if (!response.ok) throw new Error("Failed to update activity");
+      await response.json();
+      setRefreshTrigger((prev) => !prev);
+      setIsEditActivityModalOpen(false);
+    } catch (error) {
+      console.error("Error updating activity:", error);
+    }
+  };
+
+  const handleUpdateAccommodation = async () => {
+    if (!selectedAccommodation) return;
+
+    const updatedAccommodation = {
+      name: accommodationName,
+      address: accommodationAddress,
+      check_in_date: checkInDate,
+      check_out_date: checkOutDate,
+      price: parseFloat(price),
+      destination_id: selectedActivity.destination_id,
+    };
+    
+
+    try {
+      const response = await fetch(`https://travdoodle-api.onrender.com/accommodations/${selectedAccommodation.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedAccommodation),
+      });
+      if (!response.ok) throw new Error("Failed to update accommodation");
+      await response.json();
+      setRefreshTrigger((prev) => !prev);
+      setIsEditAccommodationModalOpen(false);
+    } catch (error) {
+      console.error("Error updating accommodation:", error);
+    }
+  };
+
+
   return (
     <div className={styles.container}>
       <Header />
@@ -124,6 +211,9 @@ function Destination() {
               <div key={activity.id} className={styles.card}>
                 <h3>{activity.name}</h3>
                 <p>{activity.description}</p>
+                <button className={styles.editButton} onClick={() => handleEditActivity(activity)}>
+                    Edit Activity
+                </button>
               </div>
             ))}
           </div>
@@ -141,6 +231,9 @@ function Destination() {
                 <p>Check-in: {accommodation.check_in_date}</p>
                 <p>Check-out: {accommodation.check_out_date}</p>
                 <p>Price: ${accommodation.price.toFixed(2)}</p>
+                <button className={styles.editButton} onClick={() => handleEditAccommodation(accommodation)}>
+                    Edit Accommodation
+                </button>
               </div>
             ))}
           </div>
@@ -169,6 +262,32 @@ function Destination() {
           { name: "price", label: "Price", type: "number", value: price, onChange: (e) => setPrice(e.target.value) }
         ]}
       />
+      <Modal
+        title="Edit Activity"
+        isOpen={isEditActivityModalOpen}
+        onClose={() => setIsEditActivityModalOpen(false)}
+        onSubmit={handleUpdateActivity}
+        fields={[
+            { name: "activityName", label: "Activity Name", type: "text", value: activityName, onChange: (e) => setActivityName(e.target.value) },
+            { name: "activityDescription", label: "Description", type: "text", value: activityDescription, onChange: (e) => setActivityDescription(e.target.value) }
+        ]}
+        />
+
+        <Modal
+        title="Edit Accommodation"
+        isOpen={isEditAccommodationModalOpen}
+        onClose={() => setIsEditAccommodationModalOpen(false)}
+        onSubmit={handleUpdateAccommodation}
+        fields={[
+            { name: "accommodationName", label: "Name", type: "text", value: accommodationName, onChange: (e) => setAccommodationName(e.target.value) },
+            { name: "accommodationAddress", label: "Address", type: "text", value: accommodationAddress, onChange: (e) => setAccommodationAddress(e.target.value) },
+            { name: "checkInDate", label: "Check-in Date", type: "date", value: checkInDate, onChange: (e) => setCheckInDate(e.target.value) },
+            { name: "checkOutDate", label: "Check-out Date", type: "date", value: checkOutDate, onChange: (e) => setCheckOutDate(e.target.value) },
+            { name: "price", label: "Price", type: "number", value: price, onChange: (e) => setPrice(e.target.value) }
+        ]}
+        />
+
+
       <Footer />
     </div>
   );
