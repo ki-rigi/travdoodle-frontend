@@ -5,6 +5,7 @@ import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
 import Dashboard from './components/Dashboard/Dashboard';
 import Itinerary from './components/Itinerary/Itinerary';
+import Destination from './components/Destination/Destination';
 import './App.css'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/itinerary/:itineraryId" element={<Itinerary />} />
+        <Route path="/destination/:destinationId" element={<Destination />} />
       </Routes>
     </Router>
   )

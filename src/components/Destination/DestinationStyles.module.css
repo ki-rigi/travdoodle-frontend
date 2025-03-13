@@ -1,0 +1,156 @@
+/* Container for the destination details */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--base--white);
+    margin-top: 70px;
+    width: 100%;
+  }
+  
+  /* Destination title styling */
+  .destinationTitle {
+    font-family: var(--font--primary);
+    font-size: 35px;
+    color: var(--text--black);
+    margin-bottom: 30px;
+  }
+  
+  /* Layout for Activities & Accommodations */
+  .contentContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    gap: 20px;
+  }
+  
+  /* Activities Section */
+  .activitiesContainer, .accommodationsContainer {
+    flex: 1;
+    background-color: var(--base--white);
+    border: 2px solid var(--base--black);
+    border-radius: 12px;
+    box-shadow: 4px 4px 0px var(--base--black);
+    padding: 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .activitiesContainer h2, .accommodationsContainer h2 {
+    font-family: var(--font--primary);
+    font-size: 27px;
+    color: var(--base--primary);
+    margin-bottom: 10px;
+  }
+  
+  /* Cards for Activities and Accommodations */
+  .cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 10px;
+  }
+  
+  .card {
+    width: 240px;
+    height: auto;
+    background-color: var(--base--white);
+    border: 2px solid var(--base--black);
+    border-radius: 12px;
+    box-shadow: 4px 4px 0px var(--base--black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    padding: 10px;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 6px 6px 0px var(--base--black);
+  }
+  
+  .card h3 {
+    font-family: var(--font--primary);
+    font-size: 23px;
+    color: var(--base--primary);
+    margin: 0;
+  }
+  
+  .card p {
+    font-family: var(--font--secondary);
+    font-size: 14px;
+    color: var(--text--black);
+    margin: 5px 0;
+  }
+  
+  /* Back Button */
+  .backButton {
+    position: absolute;
+    top: 110px;
+    left: 40px;
+    background-color: var(--base--primary);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .backButton:hover {
+    transform: scale(1.05);
+  }
+
+  .card:first-child {
+    background-color: var(--base--primary);
+    color: var(--text--white);
+    border: none;
+    box-shadow: 4px 4px 0px var(--base--black);
+  }
+  
+  .card:first-child h3 {
+    color: var(--text--white);
+  }
+  
+  .card:first-child:hover {
+    transform: scale(1.05);
+    box-shadow: 6px 6px 0px var(--base--black);
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .contentContainer {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+  
+    .activitiesContainer, .accommodationsContainer {
+      width: 100%;
+    }
+  
+    .cardsContainer {
+      justify-content: center;
+    }
+  
+    .card {
+      width: 90%;
+      max-width: 300px;
+    }
+  
+    .backButton {
+      position: relative;
+      top: auto;
+      left: auto;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+  }
