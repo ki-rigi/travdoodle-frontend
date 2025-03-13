@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import styles from "./DestinationStyles.module.css";
@@ -190,6 +191,37 @@ function Destination() {
     }
   };
 
+  const handleDeleteActivity = async (activity) => {
+    const confirmDelete = window.confirm(`Are you sure you want to delete the activity: "${activity.name}"?`);
+    if (!confirmDelete) return;
+  
+    try {
+      const response = await fetch(`https://travdoodle-api.onrender.com/activities/${activity.id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) throw new Error("Failed to delete activity");
+      setRefreshTrigger((prev) => !prev);
+    } catch (error) {
+      console.error("Error deleting activity:", error);
+    }
+  };
+  
+  const handleDeleteAccommodation = async (accommodation) => {
+    const confirmDelete = window.confirm(`Are you sure you want to delete the accommodation: "${accommodation.name}"?`);
+    if (!confirmDelete) return;
+  
+    try {
+      const response = await fetch(`https://travdoodle-api.onrender.com/accommodations/${accommodation.id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) throw new Error("Failed to delete accommodation");
+      setRefreshTrigger((prev) => !prev);
+    } catch (error) {
+      console.error("Error deleting accommodation:", error);
+    }
+  };
+  
+
 
   return (
     <div className={styles.container}>
@@ -211,9 +243,14 @@ function Destination() {
               <div key={activity.id} className={styles.card}>
                 <h3>{activity.name}</h3>
                 <p>{activity.description}</p>
-                <button className={styles.editButton} onClick={() => handleEditActivity(activity)}>
-                    Edit Activity
-                </button>
+                <div className={styles.buttonContainer}>
+                    <button className={styles.editButton} onClick={() => handleEditActivity(activity)}>
+                        <FaEdit />
+                    </button>
+                    <button className={styles.deleteButton} onClick={() => handleDeleteActivity(activity)}>
+                        <FaTrash />
+                    </button>
+                    </div>
               </div>
             ))}
           </div>
@@ -231,9 +268,14 @@ function Destination() {
                 <p>Check-in: {accommodation.check_in_date}</p>
                 <p>Check-out: {accommodation.check_out_date}</p>
                 <p>Price: ${accommodation.price.toFixed(2)}</p>
+                <div className={styles.buttonContainer}>
                 <button className={styles.editButton} onClick={() => handleEditAccommodation(accommodation)}>
-                    Edit Accommodation
+                    <FaEdit />
                 </button>
+                <button className={styles.deleteButton} onClick={() => handleDeleteAccommodation(accommodation)}>
+                    <FaTrash />
+                </button>
+                </div>
               </div>
             ))}
           </div>

@@ -125,23 +125,39 @@
     box-shadow: 6px 6px 0px var(--base--black);
   }
 
-  .editButton {
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  
+  .editButton, .deleteButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--base--primary);
     color: var(--text--white);
     border: none;
-    padding: 8px 12px;
+    padding: 8px;
     font-size: 14px;
-    font-family: var(--font--secondary);
     border-radius: 8px;
     cursor: pointer;
-    margin-top: 18px;
     transition: background-color 0.2s, transform 0.2s;
+  }
+  
+  .deleteButton {
+    background-color: #d9534f; /* Red for delete */
   }
   
   .editButton:hover {
     background-color: #8c0c07;
-    transform: scale(1.05);
   }
+  
+  .deleteButton:hover {
+    background-color: #c9302c;
+  }
+  
   
   /* Responsive Design */
   @media screen and (max-width: 768px) {
