@@ -36,6 +36,29 @@ function Dashboard() {
     setEndDate("");
   };
 
+  const handleDownloadReport = async (itineraryId, itineraryName) => {
+    try {
+      const response = await fetch(`https://travdoodle-api.onrender.com/itineraries/${itineraryId}/report/pdf`);
+      if (!response.ok) {
+        throw new Error("Failed to download report");
+      }
+  
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${itineraryName}_Report.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Error downloading report:", error);
+      alert("Error downloading report. Please try again.");
+    }
+  };
+  
+
   const handleSubmit = async () => {
     if (!userId) {
       alert("You must be logged in to create an itinerary.");
@@ -92,6 +115,12 @@ function Dashboard() {
               onClick={() => navigate(`/itinerary/${itinerary.id}`)} // Navigate to the itinerary page
             >
               View/Edit Trip
+            </button>
+            <button
+              className={styles.editButton} // New Button Style
+              onClick={() => handleDownloadReport(itinerary.id, itinerary.name)}
+            >
+              Download Report
             </button>
           </div>
         ))}

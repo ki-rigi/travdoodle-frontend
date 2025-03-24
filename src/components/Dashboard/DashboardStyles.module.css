@@ -25,7 +25,8 @@
   
   .card {
     width: 240px;
-    height: 180px; /* Increased height to fit button */
+    min-height: 180px; /* Allow growth if needed */
+    height: auto;
     background-color: var(--base--white);
     border: 2px solid var(--base--black);
     border-radius: 12px;
